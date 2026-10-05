@@ -1,0 +1,4063 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>VeloForge | Advanced Mobility Systems</title>
+
+<style>
+
+/* =========================================================
+   VELOFORGE
+   SINGLE FILE HTML + CSS + JAVASCRIPT
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+:root{
+    --red:#e21b23;
+    --red2:#ff4b52;
+    --redGlow:rgba(226,27,35,.35);
+
+    --black:#050607;
+    --dark:#0b0e11;
+    --dark2:#12171c;
+    --dark3:#1a2026;
+
+    --white:#ffffff;
+    --gray:#aeb6bf;
+    --light:#e4e8ec;
+
+    --border:rgba(255,255,255,.13);
+    --glass:rgba(10,13,16,.68);
+}
+
+body{
+    font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+    background:#050607;
+    color:white;
+
+    overflow-x:hidden;
+}
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-track{
+    background:#050607;
+}
+
+::-webkit-scrollbar-thumb{
+    background:var(--red);
+    border-radius:20px;
+}
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar{
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:76px;
+
+    z-index:9999;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 5%;
+
+    background:rgba(3,5,7,.82);
+
+    backdrop-filter:blur(18px);
+
+    border-bottom:
+    1px solid
+    rgba(255,255,255,.09);
+}
+
+.logo{
+    font-size:23px;
+
+    font-weight:900;
+
+    letter-spacing:2px;
+
+    white-space:nowrap;
+}
+
+.logo span{
+    color:var(--red);
+}
+
+.logo-line{
+    width:35px;
+    height:3px;
+
+    margin-top:5px;
+
+    background:var(--red);
+
+    border-radius:20px;
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+
+    gap:5px;
+}
+
+.nav-links button{
+    border:0;
+
+    background:transparent;
+
+    color:#c4c9ce;
+
+    padding:11px 13px;
+
+    cursor:pointer;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    letter-spacing:.4px;
+
+    border-radius:7px;
+
+    transition:.3s;
+}
+
+.nav-links button:hover,
+.nav-links button.active{
+    color:white;
+
+    background:var(--red);
+
+    box-shadow:
+    0 0 25px
+    rgba(226,27,35,.28);
+}
+
+.menu-btn{
+    display:none;
+
+    font-size:27px;
+
+    cursor:pointer;
+}
+
+/* =========================================================
+   PAGE SYSTEM
+========================================================= */
+
+.page{
+    display:none;
+
+    position:relative;
+
+    min-height:100vh;
+
+    padding-top:76px;
+
+    overflow:hidden;
+}
+
+.page.active{
+    display:block;
+
+    animation:
+    pageReveal
+    .65s
+    ease;
+}
+
+@keyframes pageReveal{
+
+    from{
+        opacity:0;
+        transform:scale(1.015);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+
+}
+
+/* =========================================================
+   COMMON BACKGROUND SYSTEM
+========================================================= */
+
+.bg-page{
+    position:relative;
+
+    min-height:calc(100vh - 76px);
+
+    background-size:cover;
+    background-position:center;
+
+    background-attachment:fixed;
+}
+
+.bg-page::before{
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    linear-gradient(
+        90deg,
+        rgba(3,5,7,.96),
+        rgba(3,5,7,.73),
+        rgba(3,5,7,.55)
+    );
+
+    z-index:0;
+}
+
+.bg-page::after{
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    radial-gradient(
+        circle at 80% 20%,
+        rgba(226,27,35,.20),
+        transparent 30%
+    );
+
+    z-index:0;
+
+    pointer-events:none;
+}
+
+.page-content{
+    position:relative;
+
+    z-index:2;
+
+    padding:80px 6%;
+}
+
+/* =========================================================
+   HOME
+========================================================= */
+
+#home{
+    min-height:100vh;
+
+    background:
+    #050607;
+}
+
+#home::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background-image:
+    url("https://next-moto.com/products/1114/images/ktm-890-adventure-2021-1114-1780673025.webp");
+
+    background-size:cover;
+
+    background-position:center;
+
+    animation:
+    homeBikeMove
+    15s
+    ease-in-out
+    infinite
+    alternate;
+
+    z-index:0;
+}
+
+#home::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    linear-gradient(
+        90deg,
+        rgba(0,0,0,.95),
+        rgba(0,0,0,.65),
+        rgba(0,0,0,.30)
+    );
+
+    z-index:1;
+}
+
+@keyframes homeBikeMove{
+
+    from{
+        transform:scale(1);
+    }
+
+    to{
+        transform:
+        scale(1.035)
+        translateX(-8px);
+    }
+
+}
+
+.home-content{
+
+    position:relative;
+
+    z-index:3;
+
+    min-height:
+    calc(100vh - 76px);
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    padding:
+    7%;
+
+    max-width:900px;
+}
+
+.kicker{
+
+    display:inline-block;
+
+    width:max-content;
+
+    padding:8px 13px;
+
+    border:
+    1px solid
+    rgba(226,27,35,.5);
+
+    background:
+    rgba(226,27,35,.10);
+
+    color:#ff6970;
+
+    border-radius:30px;
+
+    font-size:11px;
+
+    letter-spacing:3px;
+
+    font-weight:bold;
+
+    margin-bottom:22px;
+}
+
+.home-content h1{
+
+    font-size:
+    clamp(
+        48px,
+        8vw,
+        100px
+    );
+
+    line-height:.9;
+
+    letter-spacing:-4px;
+
+    margin-bottom:25px;
+}
+
+.home-content h1 span{
+    color:var(--red);
+}
+
+.home-content p{
+
+    color:#d0d5da;
+
+    max-width:650px;
+
+    font-size:17px;
+
+    line-height:1.8;
+}
+
+.home-actions{
+
+    display:flex;
+
+    gap:12px;
+
+    flex-wrap:wrap;
+
+    margin-top:30px;
+}
+
+.btn{
+
+    border:0;
+
+    padding:14px 23px;
+
+    border-radius:6px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    transition:.3s;
+}
+
+.btn-red{
+
+    background:var(--red);
+
+    color:white;
+
+    box-shadow:
+    0 10px 30px
+    rgba(226,27,35,.18);
+}
+
+.btn-red:hover{
+
+    background:var(--red2);
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 15px 35px
+    rgba(226,27,35,.35);
+}
+
+.btn-outline{
+
+    background:
+    rgba(255,255,255,.05);
+
+    color:white;
+
+    border:
+    1px solid
+    rgba(255,255,255,.25);
+
+    backdrop-filter:blur(10px);
+}
+
+.btn-outline:hover{
+
+    border-color:var(--red);
+
+    color:#ff656c;
+
+    transform:translateY(-3px);
+}
+
+/* floating home card */
+
+.home-tech-card{
+
+    position:absolute;
+
+    right:6%;
+
+    bottom:8%;
+
+    z-index:3;
+
+    width:280px;
+
+    padding:20px;
+
+    background:
+    rgba(5,7,9,.62);
+
+    backdrop-filter:blur(16px);
+
+    border:
+    1px solid
+    rgba(255,255,255,.15);
+
+    border-radius:14px;
+
+    animation:
+    cardFloat
+    4s
+    ease-in-out
+    infinite;
+}
+
+@keyframes cardFloat{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-9px);
+    }
+
+}
+
+.home-tech-card small{
+    color:#8d969e;
+
+    letter-spacing:2px;
+}
+
+.home-tech-card h3{
+
+    margin:
+    7px 0;
+
+    font-size:20px;
+}
+
+.home-tech-card .red-line{
+
+    width:55px;
+
+    height:3px;
+
+    background:var(--red);
+
+    margin-bottom:12px;
+}
+
+/* =========================================================
+   GENERAL SECTION
+========================================================= */
+
+.section-title{
+
+    position:relative;
+
+    z-index:2;
+
+    margin-bottom:35px;
+}
+
+.section-title small{
+
+    color:var(--red);
+
+    font-size:11px;
+
+    font-weight:bold;
+
+    letter-spacing:3px;
+}
+
+.section-title h2{
+
+    font-size:
+    clamp(
+        35px,
+        5vw,
+        62px
+    );
+
+    margin-top:8px;
+
+    line-height:1;
+}
+
+.section-title p{
+
+    color:#aeb6be;
+
+    max-width:720px;
+
+    margin-top:14px;
+
+    line-height:1.7;
+}
+
+/* =========================================================
+   NEW BIKES
+========================================================= */
+
+#new-bikes{
+
+    background-image:
+    url("https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=2200&q=85");
+
+    background-size:cover;
+
+    background-position:center;
+
+    background-attachment:fixed;
+}
+
+#new-bikes::before{
+
+    background:
+    linear-gradient(
+        90deg,
+        rgba(3,5,7,.97),
+        rgba(3,5,7,.78),
+        rgba(3,5,7,.48)
+    );
+}
+
+.bike-hero{
+
+    position:relative;
+
+    z-index:2;
+
+    min-height:560px;
+
+    display:grid;
+
+    grid-template-columns:
+    .9fr
+    1.1fr;
+
+    align-items:center;
+
+    gap:20px;
+
+    padding:
+    65px 6%;
+}
+
+.bike-hero-text{
+
+    position:relative;
+
+    z-index:4;
+}
+
+.hero-badge{
+
+    display:inline-block;
+
+    color:#ff747a;
+
+    background:
+    rgba(226,27,35,.12);
+
+    border:
+    1px solid
+    rgba(226,27,35,.45);
+
+    padding:
+    8px 13px;
+
+    border-radius:30px;
+
+    font-size:11px;
+
+    font-weight:bold;
+
+    letter-spacing:2px;
+}
+
+.bike-hero h1{
+
+    font-size:
+    clamp(
+        45px,
+        7vw,
+        82px
+    );
+
+    line-height:.92;
+
+    letter-spacing:-3px;
+
+    margin:
+    20px 0;
+}
+
+.bike-hero h1 span{
+    color:var(--red);
+}
+
+.bike-hero p{
+
+    color:#c7cdd2;
+
+    line-height:1.7;
+
+    max-width:570px;
+}
+
+.bike-stats{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:9px;
+
+    margin-top:25px;
+}
+
+.stat{
+
+    min-width:105px;
+
+    padding:
+    13px 15px;
+
+    background:
+    rgba(255,255,255,.055);
+
+    backdrop-filter:blur(12px);
+
+    border:
+    1px solid
+    rgba(255,255,255,.12);
+
+    border-radius:9px;
+}
+
+.stat strong{
+
+    display:block;
+
+    font-size:19px;
+}
+
+.stat span{
+
+    color:#7e878f;
+
+    font-size:9px;
+
+    letter-spacing:1px;
+}
+
+.bike-hero-image{
+
+    position:relative;
+
+    height:430px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+}
+
+.bike-hero-image::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:430px;
+
+    height:170px;
+
+    background:
+    rgba(226,27,35,.23);
+
+    filter:blur(65px);
+
+    border-radius:50%;
+}
+
+.bike-hero-image img{
+
+    position:relative;
+
+    z-index:2;
+
+    width:100%;
+
+    max-width:680px;
+
+    max-height:430px;
+
+    object-fit:contain;
+
+    filter:
+    drop-shadow(
+        0 30px 30px
+        rgba(0,0,0,.8)
+    );
+
+    animation:
+    bikeFloating
+    4s
+    ease-in-out
+    infinite;
+}
+
+@keyframes bikeFloating{
+
+    0%,100%{
+        transform:translateY(0) rotate(0deg);
+    }
+
+    50%{
+        transform:translateY(-11px) rotate(-.5deg);
+    }
+
+}
+
+/* =========================================================
+   GLASS COLLECTION
+========================================================= */
+
+.glass-section{
+
+    position:relative;
+
+    z-index:2;
+
+    margin:
+    0 6% 60px;
+
+    padding:40px;
+
+    background:
+    rgba(5,7,9,.68);
+
+    backdrop-filter:blur(16px);
+
+    border:
+    1px solid
+    rgba(255,255,255,.12);
+
+    border-radius:20px;
+
+    box-shadow:
+    0 25px 70px
+    rgba(0,0,0,.35);
+}
+
+/* search */
+
+.bike-tools{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:25px;
+}
+
+.search-box input{
+
+    width:290px;
+
+    max-width:100%;
+
+    padding:14px 17px;
+
+    background:
+    rgba(255,255,255,.06);
+
+    border:
+    1px solid
+    rgba(255,255,255,.13);
+
+    border-radius:8px;
+
+    outline:none;
+
+    color:white;
+}
+
+.search-box input:focus{
+
+    border-color:var(--red);
+
+    box-shadow:
+    0 0 20px
+    rgba(226,27,35,.12);
+}
+
+.filters{
+
+    display:flex;
+
+    gap:7px;
+
+    flex-wrap:wrap;
+}
+
+.filters button{
+
+    border:
+    1px solid
+    rgba(255,255,255,.12);
+
+    background:
+    rgba(255,255,255,.04);
+
+    color:#9fa6ad;
+
+    padding:
+    10px 14px;
+
+    border-radius:7px;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.filters button:hover,
+.filters button.active{
+
+    background:var(--red);
+
+    border-color:var(--red);
+
+    color:white;
+}
+
+/* bike cards */
+
+.bike-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:18px;
+}
+
+.bike-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:
+    rgba(13,17,21,.84);
+
+    border:
+    1px solid
+    rgba(255,255,255,.11);
+
+    border-radius:14px;
+
+    transition:.4s;
+}
+
+.bike-card:hover{
+
+    transform:translateY(-8px);
+
+    border-color:
+    rgba(226,27,35,.6);
+
+    box-shadow:
+    0 20px 50px
+    rgba(0,0,0,.45),
+    0 0 30px
+    rgba(226,27,35,.08);
+}
+
+.bike-img{
+
+    height:210px;
+
+    overflow:hidden;
+
+    background:#07090b;
+
+    position:relative;
+}
+
+.bike-img img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    transition:.5s;
+}
+
+.bike-card:hover .bike-img img{
+
+    transform:scale(1.07);
+}
+
+.bike-index{
+
+    position:absolute;
+
+    left:13px;
+
+    top:13px;
+
+    padding:
+    6px 8px;
+
+    background:
+    rgba(0,0,0,.65);
+
+    border:
+    1px solid
+    rgba(255,255,255,.12);
+
+    border-radius:5px;
+
+    font-size:10px;
+}
+
+.favorite{
+
+    position:absolute;
+
+    right:13px;
+
+    top:13px;
+
+    width:37px;
+
+    height:37px;
+
+    border-radius:50%;
+
+    border:
+    1px solid
+    rgba(255,255,255,.16);
+
+    background:
+    rgba(0,0,0,.62);
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:17px;
+}
+
+.favorite.liked{
+
+    background:var(--red);
+
+    border-color:var(--red);
+}
+
+.bike-info{
+
+    padding:20px;
+}
+
+.bike-info small{
+
+    color:#ff5960;
+
+    letter-spacing:2px;
+
+    font-size:9px;
+}
+
+.bike-info h3{
+
+    margin:
+    8px 0;
+
+    font-size:21px;
+}
+
+.bike-info p{
+
+    color:#929ba3;
+
+    font-size:12px;
+
+    line-height:1.6;
+}
+
+.bike-bottom{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-top:17px;
+}
+
+.view-btn{
+
+    border:0;
+
+    background:var(--red);
+
+    color:white;
+
+    padding:
+    9px 14px;
+
+    border-radius:5px;
+
+    cursor:pointer;
+
+    font-size:11px;
+
+    font-weight:bold;
+
+    transition:.3s;
+}
+
+.view-btn:hover{
+
+    background:var(--red2);
+
+    transform:translateY(-2px);
+}
+
+.price{
+
+    color:#ddd;
+
+    font-size:11px;
+
+    font-weight:bold;
+}
+
+/* =========================================================
+   REPAIR BANNER
+========================================================= */
+
+.repair-banner{
+
+    position:relative;
+
+    overflow:hidden;
+
+    min-height:300px;
+
+    display:flex;
+
+    align-items:center;
+
+    margin-top:45px;
+
+    padding:45px;
+
+    border-radius:17px;
+
+    background-image:
+    url("https://images.unsplash.com/photo-1571068316344-75bc76f77890?auto=format&fit=crop&w=1800&q=85");
+
+    background-size:cover;
+
+    background-position:center;
+}
+
+.repair-banner::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    linear-gradient(
+        90deg,
+        rgba(100,0,0,.92),
+        rgba(226,27,35,.65),
+        rgba(0,0,0,.25)
+    );
+}
+
+.repair-content{
+
+    position:relative;
+
+    z-index:2;
+
+    max-width:700px;
+}
+
+.repair-content h2{
+
+    font-size:
+    clamp(
+        30px,
+        5vw,
+        48px
+    );
+
+    line-height:1;
+
+    margin-bottom:15px;
+}
+
+.repair-content p{
+
+    color:#eee;
+
+    line-height:1.7;
+}
+
+.repair-tags{
+
+    display:flex;
+
+    gap:8px;
+
+    flex-wrap:wrap;
+
+    margin-top:20px;
+}
+
+.repair-tags span{
+
+    padding:
+    8px 12px;
+
+    background:
+    rgba(0,0,0,.27);
+
+    border:
+    1px solid
+    rgba(255,255,255,.2);
+
+    border-radius:30px;
+
+    font-size:10px;
+}
+
+/* =========================================================
+   OTHER PAGE BACKGROUNDS
+========================================================= */
+
+#spare-parts{
+
+    background-image:
+    url("https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=2200&q=85");
+
+    background-size:cover;
+
+    background-position:center;
+}
+
+#engine-components{
+
+    background-image:
+    url("https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=2200&q=85");
+
+    background-size:cover;
+
+    background-position:center;
+}
+
+#brake-systems{
+
+    background-image:
+    url("https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=2200&q=85");
+
+    background-size:cover;
+
+    background-position:center;
+}
+
+#wheel-systems{
+
+    background-image:
+    url("https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=2200&q=85");
+
+    background-size:cover;
+
+    background-position:center;
+}
+
+#electrical-parts{
+
+    background-image:
+    url("https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?auto=format&fit=crop&w=2200&q=85");
+
+    background-size:cover;
+
+    background-position:center;
+}
+
+#drive-system{
+
+    background-image:
+    url("https://images.unsplash.com/photo-1558981852-426c6c22a060?auto=format&fit=crop&w=2200&q=85");
+
+    background-size:cover;
+
+    background-position:center;
+}
+
+#suspension{
+
+    background-image:
+    url("https://images.unsplash.com/photo-1558980664-10ea7b8b9e4f?auto=format&fit=crop&w=2200&q=85");
+
+    background-size:cover;
+
+    background-position:center;
+}
+
+#smart-repair{
+
+    background-image:
+    url("https://images.unsplash.com/photo-1625047509248-ec889cbff17f?auto=format&fit=crop&w=2200&q=85");
+
+    background-size:cover;
+
+    background-position:center;
+}
+
+#ai-tech{
+
+    background-image:
+    url("https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=2200&q=85");
+
+    background-size:cover;
+
+    background-position:center;
+}
+
+#manufacturing{
+
+    background-image:
+    url("https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=2200&q=85");
+
+    background-size:cover;
+
+    background-position:center;
+}
+
+#technology{
+
+    background-image:
+    url("https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=2200&q=85");
+
+    background-size:cover;
+
+    background-position:center;
+}
+
+#contact{
+
+    background-image:
+    url("https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=2200&q=85");
+
+    background-size:cover;
+
+    background-position:center;
+}
+
+/* =========================================================
+   PARTS
+========================================================= */
+
+.parts-grid{
+
+    position:relative;
+
+    z-index:2;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:18px;
+}
+
+.part-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    min-height:190px;
+
+    padding:27px;
+
+    border:
+    1px solid
+    rgba(255,255,255,.13);
+
+    border-radius:16px;
+
+    background:
+    rgba(8,11,14,.66);
+
+    backdrop-filter:blur(13px);
+
+    cursor:pointer;
+
+    transition:.4s;
+}
+
+.part-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    right:-40px;
+
+    bottom:-40px;
+
+    width:130px;
+
+    height:130px;
+
+    background:
+    rgba(226,27,35,.13);
+
+    filter:blur(25px);
+
+    border-radius:50%;
+}
+
+.part-card:hover{
+
+    transform:
+    translateY(-8px)
+    scale(1.01);
+
+    border-color:
+    rgba(226,27,35,.7);
+
+    box-shadow:
+    0 25px 55px
+    rgba(0,0,0,.4);
+}
+
+.part-icon{
+
+    font-size:35px;
+
+    margin-bottom:20px;
+}
+
+.part-card h3{
+
+    margin-bottom:8px;
+
+    font-size:20px;
+}
+
+.part-card p{
+
+    color:#9ca4ab;
+
+    font-size:12px;
+
+    line-height:1.6;
+}
+
+.part-arrow{
+
+    position:absolute;
+
+    right:20px;
+
+    bottom:20px;
+
+    color:var(--red);
+
+    font-size:20px;
+}
+
+/* =========================================================
+   INFORMATION CARDS
+========================================================= */
+
+.info-grid{
+
+    position:relative;
+
+    z-index:2;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:18px;
+}
+
+.info-card{
+
+    position:relative;
+
+    min-height:180px;
+
+    padding:27px;
+
+    background:
+    rgba(8,11,14,.72);
+
+    backdrop-filter:blur(14px);
+
+    border:
+    1px solid
+    rgba(255,255,255,.12);
+
+    border-radius:15px;
+
+    transition:.35s;
+}
+
+.info-card:hover{
+
+    transform:translateY(-6px);
+
+    border-color:
+    rgba(226,27,35,.55);
+}
+
+.info-card .number{
+
+    color:var(--red);
+
+    font-size:11px;
+
+    font-weight:bold;
+
+    letter-spacing:2px;
+}
+
+.info-card h3{
+
+    margin:
+    12px 0;
+
+    font-size:20px;
+}
+
+.info-card p{
+
+    color:#a0a8af;
+
+    line-height:1.7;
+
+    font-size:13px;
+}
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+.contact-grid{
+
+    position:relative;
+
+    z-index:2;
+
+    display:grid;
+
+    grid-template-columns:
+    1fr
+    1fr;
+
+    gap:18px;
+}
+
+.contact-card{
+
+    padding:30px;
+
+    background:
+    rgba(7,10,12,.72);
+
+    backdrop-filter:blur(14px);
+
+    border:
+    1px solid
+    rgba(255,255,255,.13);
+
+    border-radius:15px;
+}
+
+.contact-card h3{
+
+    color:#ff5c63;
+
+    margin-bottom:9px;
+}
+
+.contact-card p{
+
+    color:#a8b0b7;
+
+    line-height:1.7;
+}
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:15000;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:20px;
+
+    background:
+    rgba(0,0,0,.86);
+
+    backdrop-filter:blur(12px);
+}
+
+.modal.show{
+
+    display:flex;
+}
+
+.modal-box{
+
+    width:600px;
+
+    max-width:100%;
+
+    position:relative;
+
+    padding:30px;
+
+    background:
+    #11161b;
+
+    border:
+    1px solid
+    rgba(255,255,255,.15);
+
+    border-radius:18px;
+
+    box-shadow:
+    0 30px 100px
+    rgba(0,0,0,.7);
+
+    animation:
+    modalIn
+    .3s
+    ease;
+}
+
+@keyframes modalIn{
+
+    from{
+        opacity:0;
+        transform:scale(.92);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+
+}
+
+.close{
+
+    position:absolute;
+
+    right:17px;
+
+    top:12px;
+
+    border:0;
+
+    background:none;
+
+    color:white;
+
+    font-size:28px;
+
+    cursor:pointer;
+}
+
+.modal-box h2{
+
+    color:#ff4e55;
+
+    margin-bottom:13px;
+}
+
+.modal-box p{
+
+    color:#aeb5bb;
+
+    line-height:1.7;
+}
+
+.spec-list{
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:9px;
+
+    margin-top:20px;
+}
+
+.spec{
+
+    padding:14px;
+
+    background:#080a0c;
+
+    border-radius:8px;
+}
+
+.spec span{
+
+    display:block;
+
+    color:#6f777e;
+
+    font-size:9px;
+
+    letter-spacing:1px;
+}
+
+.spec strong{
+
+    display:block;
+
+    margin-top:4px;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1050px){
+
+    .nav-links{
+        display:none;
+
+        position:absolute;
+
+        top:76px;
+
+        left:0;
+
+        width:100%;
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+        padding:15px;
+
+        background:
+        rgba(4,6,8,.97);
+
+        backdrop-filter:blur(20px);
+    }
+
+    .nav-links.show{
+        display:flex;
+    }
+
+    .nav-links button{
+        text-align:left;
+
+        width:100%;
+
+        padding:14px;
+    }
+
+    .menu-btn{
+        display:block;
+    }
+
+    .bike-hero{
+
+        grid-template-columns:1fr;
+
+        padding-top:55px;
+    }
+
+    .bike-hero-image{
+
+        height:330px;
+    }
+
+    .bike-grid{
+
+        grid-template-columns:
+        repeat(2,1fr);
+    }
+
+    .parts-grid,
+    .info-grid{
+
+        grid-template-columns:
+        repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:650px){
+
+    .navbar{
+        padding:0 20px;
+    }
+
+    .logo{
+        font-size:18px;
+    }
+
+    .page-content{
+
+        padding:
+        55px 20px;
+    }
+
+    .glass-section{
+
+        margin:
+        0 15px 40px;
+
+        padding:25px 18px;
+    }
+
+    .bike-hero{
+
+        padding:
+        50px 20px 25px;
+    }
+
+    .bike-hero h1{
+
+        font-size:48px;
+    }
+
+    .bike-hero-image{
+
+        height:230px;
+    }
+
+    .bike-grid,
+    .parts-grid,
+    .info-grid,
+    .contact-grid{
+
+        grid-template-columns:1fr;
+    }
+
+    .home-content{
+
+        padding:
+        30px 20px;
+    }
+
+    .home-content h1{
+
+        font-size:52px;
+
+        letter-spacing:-2px;
+    }
+
+    .home-tech-card{
+
+        display:none;
+    }
+
+    .search-box{
+
+        width:100%;
+    }
+
+    .search-box input{
+
+        width:100%;
+    }
+
+    .repair-banner{
+
+        padding:30px 20px;
+    }
+
+    .spec-list{
+
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        VELO<span>FORGE</span>
+        <div class="logo-line"></div>
+    </div>
+
+    <div class="menu-btn"
+         onclick="toggleMenu()">
+        ☰
+    </div>
+
+    <div class="nav-links"
+         id="navLinks">
+
+        <button class="active"
+                onclick="openPage('home',this)">
+            HOME
+        </button>
+
+        <button onclick="openPage('new-bikes',this)">
+            NEW BIKES
+        </button>
+
+        <button onclick="openPage('spare-parts',this)">
+            SPARE PARTS
+        </button>
+
+        <button onclick="openPage('smart-repair',this)">
+            SMART REPAIR
+        </button>
+
+        <button onclick="openPage('ai-tech',this)">
+            AI TECHNOLOGY
+        </button>
+
+        <button onclick="openPage('manufacturing',this)">
+            MANUFACTURING
+        </button>
+
+        <button onclick="openPage('technology',this)">
+            TECHNOLOGY
+        </button>
+
+        <button onclick="openPage('contact',this)">
+            CONTACT
+        </button>
+
+    </div>
+
+</nav>
+
+
+<!-- =====================================================
+     HOME
+===================================================== -->
+
+<section class="page active"
+         id="home">
+
+    <div class="home-content">
+
+        <div class="kicker">
+            ADVANCED MOTORCYCLE ENGINEERING
+        </div>
+
+        <h1>
+            BUILT FOR<br>
+            <span>THE RIDE.</span>
+        </h1>
+
+        <p>
+            VeloForge develops advanced motorcycle
+            components, precision engineering systems
+            and intelligent repair technologies for
+            modern riders.
+        </p>
+
+        <div class="home-actions">
+
+            <button class="btn btn-red"
+                    onclick="openPageById('new-bikes')">
+                EXPLORE NEW BIKES
+            </button>
+
+            <button class="btn btn-outline"
+                    onclick="openPageById('spare-parts')">
+                EXPLORE SPARE PARTS
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="home-tech-card">
+
+        <small>
+            VELOFORGE SYSTEM
+        </small>
+
+        <div class="red-line"></div>
+
+        <h3>
+            ENGINEERED FOR MOTION
+        </h3>
+
+        <p>
+            Precision parts.
+            Smart diagnostics.
+            Advanced repair.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     NEW BIKES
+===================================================== -->
+
+<section class="page bg-page"
+         id="new-bikes">
+
+    <div class="bike-hero">
+
+        <div class="bike-hero-text">
+
+            <span class="hero-badge">
+                NEW GENERATION MOTORCYCLES
+            </span>
+
+            <h1>
+                RIDE THE<br>
+                <span>NEXT LEVEL.</span>
+            </h1>
+
+            <p>
+                Discover performance motorcycles
+                engineered for adventure, speed,
+                technology and everyday riding.
+            </p>
+
+            <div class="bike-stats">
+
+                <div class="stat">
+                    <strong>889cc</strong>
+                    <span>ENGINE CLASS</span>
+                </div>
+
+                <div class="stat">
+                    <strong>105 PS</strong>
+                    <span>POWER</span>
+                </div>
+
+                <div class="stat">
+                    <strong>100 Nm</strong>
+                    <span>TORQUE</span>
+                </div>
+
+                <div class="stat">
+                    <strong>6 SPEED</strong>
+                    <span>TRANSMISSION</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="bike-hero-image">
+
+            <img
+            src="https://next-moto.com/products/1114/images/ktm-890-adventure-2021-1114-1780673025.webp"
+            alt="KTM Adventure"
+            onerror="imageFallback(this)">
+
+        </div>
+
+    </div>
+
+
+    <div class="glass-section">
+
+        <div class="section-title">
+
+            <small>
+                MOTORCYCLE COLLECTION
+            </small>
+
+            <h2>
+                New Bikes
+            </h2>
+
+            <p>
+                Explore our motorcycle showcase.
+                Every motorcycle can also be inspected,
+                serviced and repaired through our
+                advanced workshop systems.
+            </p>
+
+        </div>
+
+
+        <div class="bike-tools">
+
+            <div class="search-box">
+
+                <input
+                id="bikeSearch"
+                type="text"
+                placeholder="Search motorcycle..."
+                onkeyup="searchBikes()">
+
+            </div>
+
+
+            <div class="filters">
+
+                <button class="active"
+                        onclick="filterBikes('all',this)">
+                    ALL
+                </button>
+
+                <button onclick="filterBikes('adventure',this)">
+                    ADVENTURE
+                </button>
+
+                <button onclick="filterBikes('sport',this)">
+                    SPORT
+                </button>
+
+                <button onclick="filterBikes('street',this)">
+                    STREET
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="bike-grid"
+             id="bikeGrid">
+
+
+            <!-- BIKE 1 -->
+
+            <div class="bike-card"
+                 data-type="adventure"
+                 data-name="KTM 890 Adventure R">
+
+                <div class="bike-img">
+
+                    <img
+                    src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1200&q=85"
+                    alt="Adventure Bike"
+                    onerror="imageFallback(this)">
+
+                    <span class="bike-index">
+                        01
+                    </span>
+
+                    <button class="favorite"
+                            onclick="favoriteBike(this)">
+                        ♡
+                    </button>
+
+                </div>
+
+                <div class="bike-info">
+
+                    <small>
+                        ADVENTURE
+                    </small>
+
+                    <h3>
+                        KTM 890 Adventure R
+                    </h3>
+
+                    <p>
+                        High-performance adventure
+                        motorcycle built for demanding
+                        road and off-road riding.
+                    </p>
+
+                    <div class="bike-bottom">
+
+                        <span class="price">
+                            PREMIUM
+                        </span>
+
+                        <button class="view-btn"
+                        onclick="showBike(
+                        'KTM 890 Adventure R',
+                        'High-performance adventure motorcycle engineered for demanding terrain and long-distance travel.',
+                        '889cc',
+                        '105 PS',
+                        'Adventure',
+                        '6 Speed'
+                        )">
+                            DETAILS
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BIKE 2 -->
+
+            <div class="bike-card"
+                 data-type="adventure"
+                 data-name="Adventure Rally">
+
+                <div class="bike-img">
+
+                    <img
+                    src="https://images.unsplash.com/photo-1525160354320-d8e92641c563?auto=format&fit=crop&w=1200&q=85"
+                    alt="Rally Bike"
+                    onerror="imageFallback(this)">
+
+                    <span class="bike-index">
+                        02
+                    </span>
+
+                    <button class="favorite"
+                            onclick="favoriteBike(this)">
+                        ♡
+                    </button>
+
+                </div>
+
+                <div class="bike-info">
+
+                    <small>
+                        RALLY
+                    </small>
+
+                    <h3>
+                        Adventure Rally
+                    </h3>
+
+                    <p>
+                        Rally-inspired engineering
+                        for riders who want to explore
+                        beyond the road.
+                    </p>
+
+                    <div class="bike-bottom">
+
+                        <span class="price">
+                            RALLY
+                        </span>
+
+                        <button class="view-btn"
+                        onclick="showBike(
+                        'Adventure Rally',
+                        'Rally-inspired motorcycle designed for extreme terrain and performance riding.',
+                        '889cc',
+                        'RALLY',
+                        'WP PRO',
+                        '6 Speed'
+                        )">
+                            DETAILS
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BIKE 3 -->
+
+            <div class="bike-card"
+                 data-type="sport"
+                 data-name="VeloForge RS-X">
+
+                <div class="bike-img">
+
+                    <img
+                    src="https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=1200&q=85"
+                    alt="Sport Bike"
+                    onerror="imageFallback(this)">
+
+                    <span class="bike-index">
+                        03
+                    </span>
+
+                    <button class="favorite"
+                            onclick="favoriteBike(this)">
+                        ♡
+                    </button>
+
+                </div>
+
+                <div class="bike-info">
+
+                    <small>
+                        SPORT
+                    </small>
+
+                    <h3>
+                        VeloForge RS-X
+                    </h3>
+
+                    <p>
+                        Precision-focused sport
+                        motorcycle concept built
+                        around performance.
+                    </p>
+
+                    <div class="bike-bottom">
+
+                        <span class="price">
+                            RS SERIES
+                        </span>
+
+                        <button class="view-btn"
+                        onclick="showBike(
+                        'VeloForge RS-X',
+                        'Performance-focused sport motorcycle concept.',
+                        '999cc',
+                        'HIGH OUTPUT',
+                        'RACE',
+                        '6 Speed'
+                        )">
+                            DETAILS
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BIKE 4 -->
+
+            <div class="bike-card"
+                 data-type="street"
+                 data-name="Street X">
+
+                <div class="bike-img">
+
+                    <img
+                    src="https://images.unsplash.com/photo-1558980394-0c74a8e8a3b0?auto=format&fit=crop&w=1200&q=85"
+                    alt="Street Bike"
+                    onerror="imageFallback(this)">
+
+                    <span class="bike-index">
+                        04
+                    </span>
+
+                    <button class="favorite"
+                            onclick="favoriteBike(this)">
+                        ♡
+                    </button>
+
+                </div>
+
+                <div class="bike-info">
+
+                    <small>
+                        STREET
+                    </small>
+
+                    <h3>
+                        VeloForge Street X
+                    </h3>
+
+                    <p>
+                        Urban performance motorcycle
+                        with aggressive modern styling.
+                    </p>
+
+                    <div class="bike-bottom">
+
+                        <span class="price">
+                            STREET
+                        </span>
+
+                        <button class="view-btn"
+                        onclick="showBike(
+                        'VeloForge Street X',
+                        'Urban-focused motorcycle designed for daily performance.',
+                        '799cc',
+                        'STREET',
+                        'ADVANCED',
+                        '6 Speed'
+                        )">
+                            DETAILS
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BIKE 5 -->
+
+            <div class="bike-card"
+                 data-type="sport"
+                 data-name="VeloForge Thunder">
+
+                <div class="bike-img">
+
+                    <img
+                    src="https://images.unsplash.com/photo-1609630875171-b1321377ee65?auto=format&fit=crop&w=1200&q=85"
+                    alt="Performance Bike"
+                    onerror="imageFallback(this)">
+
+                    <span class="bike-index">
+                        05
+                    </span>
+
+                    <button class="favorite"
+                            onclick="favoriteBike(this)">
+                        ♡
+                    </button>
+
+                </div>
+
+                <div class="bike-info">
+
+                    <small>
+                        PERFORMANCE
+                    </small>
+
+                    <h3>
+                        VeloForge Thunder
+                    </h3>
+
+                    <p>
+                        Aggressive performance machine
+                        for riders who demand more.
+                    </p>
+
+                    <div class="bike-bottom">
+
+                        <span class="price">
+                            THUNDER
+                        </span>
+
+                        <button class="view-btn"
+                        onclick="showBike(
+                        'VeloForge Thunder',
+                        'Performance-focused motorcycle designed for aggressive riding.',
+                        '1000cc',
+                        'PERFORMANCE',
+                        'ADVANCED',
+                        '6 Speed'
+                        )">
+                            DETAILS
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BIKE 6 -->
+
+            <div class="bike-card"
+                 data-type="adventure"
+                 data-name="VeloForge Explorer">
+
+                <div class="bike-img">
+
+                    <img
+                    src="https://images.unsplash.com/photo-1558981285-6f0c94958bb6?auto=format&fit=crop&w=1200&q=85"
+                    alt="Explorer Bike"
+                    onerror="imageFallback(this)">
+
+                    <span class="bike-index">
+                        06
+                    </span>
+
+                    <button class="favorite"
+                            onclick="favoriteBike(this)">
+                        ♡
+                    </button>
+
+                </div>
+
+                <div class="bike-info">
+
+                    <small>
+                        EXPLORER
+                    </small>
+
+                    <h3>
+                        VeloForge Explorer
+                    </h3>
+
+                    <p>
+                        Long-distance adventure platform
+                        for riders who explore beyond
+                        the road.
+                    </p>
+
+                    <div class="bike-bottom">
+
+                        <span class="price">
+                            ADVENTURE
+                        </span>
+
+                        <button class="view-btn"
+                        onclick="showBike(
+                        'VeloForge Explorer',
+                        'Long-distance adventure motorcycle designed for exploration.',
+                        '890cc',
+                        'ADVENTURE',
+                        'TOURING',
+                        '6 Speed'
+                        )">
+                            DETAILS
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- REPAIR BANNER -->
+
+        <div class="repair-banner">
+
+            <div class="repair-content">
+
+                <h2>
+                    ONE WORKSHOP.<br>
+                    EVERY MOTORCYCLE.
+                </h2>
+
+                <p>
+                    We service and repair motorcycles
+                    across adventure, sport, street and
+                    commuter categories with modern
+                    diagnostics and precision parts.
+                </p>
+
+                <div class="repair-tags">
+
+                    <span>✓ ENGINE</span>
+                    <span>✓ BRAKES</span>
+                    <span>✓ ELECTRICAL</span>
+                    <span>✓ SUSPENSION</span>
+                    <span>✓ WHEELS</span>
+                    <span>✓ DIAGNOSTICS</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SPARE PARTS
+===================================================== -->
+
+<section class="page bg-page"
+         id="spare-parts">
+
+    <div class="page-content">
+
+        <div class="section-title">
+
+            <small>
+                PRECISION COMPONENTS
+            </small>
+
+            <h2>
+                Spare Parts
+            </h2>
+
+            <p>
+                Explore motorcycle components engineered
+                for performance, durability and reliable
+                service.
+            </p>
+
+        </div>
+
+
+        <div class="parts-grid">
+
+            <div class="part-card"
+                 onclick="openPageById('engine-components')">
+
+                <div class="part-icon">
+                    ⚙️
+                </div>
+
+                <h3>
+                    Engine Components
+                </h3>
+
+                <p>
+                    Pistons, crankshafts, valves,
+                    cylinders and precision engine parts.
+                </p>
+
+                <div class="part-arrow">
+                    →
+                </div>
+
+            </div>
+
+
+            <div class="part-card"
+                 onclick="openPageById('brake-systems')">
+
+                <div class="part-icon">
+                    🛑
+                </div>
+
+                <h3>
+                    Brake Systems
+                </h3>
+
+                <p>
+                    Brake discs, pads, calipers,
+                    ABS and braking components.
+                </p>
+
+                <div class="part-arrow">
+                    →
+                </div>
+
+            </div>
+
+
+            <div class="part-card"
+                 onclick="openPageById('wheel-systems')">
+
+                <div class="part-icon">
+                    🛞
+                </div>
+
+                <h3>
+                    Wheel Systems
+                </h3>
+
+                <p>
+                    Wheels, tyres, hubs and
+                    bearing systems.
+                </p>
+
+                <div class="part-arrow">
+                    →
+                </div>
+
+            </div>
+
+
+            <div class="part-card"
+                 onclick="openPageById('electrical-parts')">
+
+                <div class="part-icon">
+                    ⚡
+                </div>
+
+                <h3>
+                    Electrical Parts
+                </h3>
+
+                <p>
+                    ECU, sensors, batteries,
+                    wiring and electrical systems.
+                </p>
+
+                <div class="part-arrow">
+                    →
+                </div>
+
+            </div>
+
+
+            <div class="part-card"
+                 onclick="openPageById('drive-system')">
+
+                <div class="part-icon">
+                    🔗
+                </div>
+
+                <h3>
+                    Drive System
+                </h3>
+
+                <p>
+                    Chains, sprockets, clutch and
+                    power-transfer components.
+                </p>
+
+                <div class="part-arrow">
+                    →
+                </div>
+
+            </div>
+
+
+            <div class="part-card"
+                 onclick="openPageById('suspension')">
+
+                <div class="part-icon">
+                    🔧
+                </div>
+
+                <h3>
+                    Suspension
+                </h3>
+
+                <p>
+                    Front forks, rear shocks,
+                    springs and suspension parts.
+                </p>
+
+                <div class="part-arrow">
+                    →
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ENGINE
+===================================================== -->
+
+<section class="page bg-page"
+         id="engine-components">
+
+    <div class="page-content">
+
+        <div class="section-title">
+
+            <small>
+                POWERTRAIN ENGINEERING
+            </small>
+
+            <h2>
+                Engine Components
+            </h2>
+
+            <p>
+                Precision motorcycle engine components
+                built for reliability and performance.
+            </p>
+
+        </div>
+
+
+        <div class="info-grid">
+
+            <div class="info-card">
+                <span class="number">01 / ENGINE</span>
+                <h3>Pistons</h3>
+                <p>
+                    Precision piston systems designed
+                    for efficient combustion.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <span class="number">02 / ENGINE</span>
+                <h3>Crankshaft</h3>
+                <p>
+                    Strong rotating components engineered
+                    for reliable power delivery.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <span class="number">03 / ENGINE</span>
+                <h3>Valves</h3>
+                <p>
+                    Intake and exhaust valve systems
+                    for controlled airflow.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <span class="number">04 / ENGINE</span>
+                <h3>Cylinder</h3>
+                <p>
+                    High-precision cylinder components
+                    for engine operation.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <span class="number">05 / ENGINE</span>
+                <h3>Camshaft</h3>
+                <p>
+                    Valve timing and engine control
+                    components.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <span class="number">06 / ENGINE</span>
+                <h3>Spark Plug</h3>
+                <p>
+                    Reliable ignition components
+                    for combustion.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     BRAKES
+===================================================== -->
+
+<section class="page bg-page"
+         id="brake-systems">
+
+    <div class="page-content">
+
+        <div class="section-title">
+
+            <small>
+                SAFETY ENGINEERING
+            </small>
+
+            <h2>
+                Brake Systems
+            </h2>
+
+            <p>
+                High-performance braking components
+                designed for controlled stopping.
+            </p>
+
+        </div>
+
+
+        <div class="info-grid">
+
+            <div class="info-card">
+                <span class="number">01 / BRAKES</span>
+                <h3>Brake Disc</h3>
+                <p>
+                    Heat-resistant braking disc
+                    systems.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <span class="number">02 / BRAKES</span>
+                <h3>Brake Caliper</h3>
+                <p>
+                    Precision caliper systems for
+                    controlled braking.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <span class="number">03 / BRAKES</span>
+                <h3>Brake Pads</h3>
+                <p>
+                    Friction materials for dependable
+                    stopping performance.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <span class="number">04 / BRAKES</span>
+                <h3>ABS Sensor</h3>
+                <p>
+                    Wheel-speed sensing for
+                    intelligent braking.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     WHEELS
+===================================================== -->
+
+<section class="page bg-page"
+         id="wheel-systems">
+
+    <div class="page-content">
+
+        <div class="section-title">
+
+            <small>
+                ROAD CONTACT
+            </small>
+
+            <h2>
+                Wheel Systems
+            </h2>
+
+            <p>
+                Components that connect the motorcycle
+                directly to the road.
+            </p>
+
+        </div>
+
+
+        <div class="info-grid">
+
+            <div class="info-card">
+                <span class="number">01 / WHEELS</span>
+                <h3>Alloy Wheels</h3>
+                <p>
+                    Lightweight wheel systems designed
+                    for performance.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <span class="number">02 / WHEELS</span>
+                <h3>Tyres</h3>
+                <p>
+                    Road, sport and adventure tyre
+                    solutions.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <span class="number">03 / WHEELS</span>
+                <h3>Wheel Bearings</h3>
+                <p>
+                    Smooth rotating bearing systems
+                    for wheel assemblies.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ELECTRICAL
+===================================================== -->
+
+<section class="page bg-page"
+         id="electrical-parts">
+
+    <div class="page-content">
+
+        <div class="section-title">
+
+            <small>
+                ELECTRONIC MOBILITY
+            </small>
+
+            <h2>
+                Electrical Parts
+            </h2>
+
+            <p>
+                Smart electrical components for modern
+                connected motorcycles.
+            </p>
+
+        </div>
+
+
+        <div class="info-grid">
+
+            <div class="info-card">
+                <span class="number">01 / POWER</span>
+                <h3>Battery</h3>
+                <p>
+                    Motorcycle power and energy
+                    storage systems.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <span class="number">02 / CONTROL</span>
+                <h3>ECU</h3>
+                <p>
+                    Electronic engine control
+                    technology.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <span class="number">03 / SENSOR</span>
+                <h3>Sensors</h3>
+                <p>
+                    Precision sensors for motorcycle
+                    performance monitoring.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <span class="number">04 / LIGHTING</span>
+                <h3>LED Lighting</h3>
+                <p>
+                    Modern motorcycle lighting
+                    and visibility systems.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     DRIVE
+===================================================== -->
+
+<section class="page bg-page"
+         id="drive-system">
+
+    <div class="page-content">
+
+        <div class="section-title">
+
+            <small>
+                POWER TRANSFER
+            </small>
+
+            <h2>
+                Drive System
+            </h2>
+
+            <p>
+                Components that transfer engine power
+                to the rear wheel.
+            </p>
+
+        </div>
+
+
+        <div class="info-grid">
+
+            <div class="info-card">
+                <span class="number">01 / DRIVE</span>
+                <h3>Drive Chain</h3>
+                <p>
+                    Durable motorcycle chain
+                    systems.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <span class="number">02 / DRIVE</span>
+                <h3>Sprocket</h3>
+                <p>
+                    Front and rear sprocket systems
+                    for power transfer.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <span class="number">03 / DRIVE</span>
+                <h3>Clutch</h3>
+                <p>
+                    Smooth power engagement and
+                    transmission control.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SUSPENSION
+===================================================== -->
+
+<section class="page bg-page"
+         id="suspension">
+
+    <div class="page-content">
+
+        <div class="section-title">
+
+            <small>
+                CONTROL & STABILITY
+            </small>
+
+            <h2>
+                Suspension
+            </h2>
+
+            <p>
+                Advanced suspension components for
+                handling, comfort and control.
+            </p>
+
+        </div>
+
+
+        <div class="info-grid">
+
+            <div class="info-card">
+                <span class="number">01 / FRONT</span>
+                <h3>Front Fork</h3>
+                <p>
+                    Front suspension systems designed
+                    for precise handling.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <span class="number">02 / REAR</span>
+                <h3>Rear Shock</h3>
+                <p>
+                    Rear damping systems for stability
+                    and comfort.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <span class="number">03 / SPRING</span>
+                <h3>Springs</h3>
+                <p>
+                    Suspension springs designed
+                    for controlled movement.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SMART REPAIR
+===================================================== -->
+
+<section class="page bg-page"
+         id="smart-repair">
+
+    <div class="page-content">
+
+        <div class="section-title">
+
+            <small>
+                INTELLIGENT WORKSHOP
+            </small>
+
+            <h2>
+                Smart Repair
+            </h2>
+
+            <p>
+                Technology-assisted motorcycle repair,
+                inspection and diagnostics.
+            </p>
+
+        </div>
+
+
+        <div class="info-grid">
+
+            <div class="info-card">
+                <span class="number">01 / SCAN</span>
+                <h3>Digital Diagnostics</h3>
+                <p>
+                    Identify possible motorcycle faults
+                    using digital diagnostic systems.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <span class="number">02 / TRACK</span>
+                <h3>Service Tracking</h3>
+                <p>
+                    Monitor inspection and repair
+                    progress digitally.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <span class="number">03 / ECU</span>
+                <h3>ECU Scan</h3>
+                <p>
+                    Inspect electronic systems and
+                    diagnostic information.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     AI
+===================================================== -->
+
+<section class="page bg-page"
+         id="ai-tech">
+
+    <div class="page-content">
+
+        <div class="section-title">
+
+            <small>
+                FUTURE MOBILITY
+            </small>
+
+            <h2>
+                AI Technology
+            </h2>
+
+            <p>
+                Intelligent diagnostic and predictive
+                maintenance concepts for motorcycles.
+            </p>
+
+        </div>
+
+
+        <div class="info-grid">
+
+            <div class="info-card">
+                <span class="number">01 / AI</span>
+                <h3>AI Diagnostics</h3>
+                <p>
+                    Intelligent workflows for analyzing
+                    possible motorcycle faults.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <span class="number">02 / AI</span>
+                <h3>Predictive Maintenance</h3>
+                <p>
+                    Identify potential maintenance
+                    requirements earlier.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <span class="number">03 / DATA</span>
+                <h3>Smart Analytics</h3>
+                <p>
+                    Convert vehicle and workshop data
+                    into useful insights.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     MANUFACTURING
+===================================================== -->
+
+<section class="page bg-page"
+         id="manufacturing">
+
+    <div class="page-content">
+
+        <div class="section-title">
+
+            <small>
+                PRECISION PRODUCTION
+            </small>
+
+            <h2>
+                Manufacturing
+            </h2>
+
+            <p>
+                Engineering and manufacturing processes
+                for high-quality motorcycle components.
+            </p>
+
+        </div>
+
+
+        <div class="info-grid">
+
+            <div class="info-card">
+                <span class="number">01 / CNC</span>
+                <h3>CNC Manufacturing</h3>
+                <p>
+                    Precision machining for advanced
+                    motorcycle components.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <span class="number">02 / QC</span>
+                <h3>Quality Testing</h3>
+                <p>
+                    Inspection and testing processes
+                    for component reliability.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <span class="number">03 / CAD</span>
+                <h3>Engineering</h3>
+                <p>
+                    Digital design and engineering
+                    workflows for component development.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     TECHNOLOGY
+===================================================== -->
+
+<section class="page bg-page"
+         id="technology">
+
+    <div class="page-content">
+
+        <div class="section-title">
+
+            <small>
+                DIGITAL MOTORCYCLE SYSTEMS
+            </small>
+
+            <h2>
+                Technology
+            </h2>
+
+            <p>
+                Connected motorcycles, sensors,
+                diagnostics and intelligent systems.
+            </p>
+
+        </div>
+
+
+        <div class="info-grid">
+
+            <div class="info-card">
+                <span class="number">01 / CONNECTED</span>
+                <h3>Connected Bikes</h3>
+                <p>
+                    Digital motorcycle connectivity
+                    concepts.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <span class="number">02 / IOT</span>
+                <h3>IoT Systems</h3>
+                <p>
+                    Sensor-driven motorcycle monitoring
+                    systems.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <span class="number">03 / SOFTWARE</span>
+                <h3>Software Diagnostics</h3>
+                <p>
+                    Digital tools for modern motorcycle
+                    service operations.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CONTACT
+===================================================== -->
+
+<section class="page bg-page"
+         id="contact">
+
+    <div class="page-content">
+
+        <div class="section-title">
+
+            <small>
+                VELOFORGE SUPPORT
+            </small>
+
+            <h2>
+                Contact
+            </h2>
+
+            <p>
+                Connect with our motorcycle engineering,
+                service and spare-parts team.
+            </p>
+
+        </div>
+
+
+        <div class="contact-grid">
+
+            <div class="contact-card">
+
+                <h3>
+                    📍 Engineering Center
+                </h3>
+
+                <p>
+                    VeloForge Advanced Mobility Systems<br>
+                    India
+                </p>
+
+            </div>
+
+
+            <div class="contact-card">
+
+                <h3>
+                    🔧 Workshop
+                </h3>
+
+                <p>
+                    Motorcycle diagnostics,
+                    repair and spare-parts support.
+                </p>
+
+            </div>
+
+
+            <div class="contact-card">
+
+                <h3>
+                    📞 Service Support
+                </h3>
+
+                <p>
+                    +91 90000 00000
+                </p>
+
+            </div>
+
+
+            <div class="contact-card">
+
+                <h3>
+                    ✉ Email
+                </h3>
+
+                <p>
+                    support@veloforge.example
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     BIKE DETAILS MODAL
+===================================================== -->
+
+<div class="modal"
+     id="bikeModal">
+
+    <div class="modal-box">
+
+        <button class="close"
+                onclick="closeBikeModal()">
+            ×
+        </button>
+
+        <h2 id="modalName">
+            Motorcycle
+        </h2>
+
+        <p id="modalDescription">
+            Motorcycle information.
+        </p>
+
+
+        <div class="spec-list">
+
+            <div class="spec">
+
+                <span>
+                    ENGINE
+                </span>
+
+                <strong id="spec1">
+                    ---
+                </strong>
+
+            </div>
+
+
+            <div class="spec">
+
+                <span>
+                    POWER / TYPE
+                </span>
+
+                <strong id="spec2">
+                    ---
+                </strong>
+
+            </div>
+
+
+            <div class="spec">
+
+                <span>
+                    FEATURE
+                </span>
+
+                <strong id="spec3">
+                    ---
+                </strong>
+
+            </div>
+
+
+            <div class="spec">
+
+                <span>
+                    TRANSMISSION
+                </span>
+
+                <strong id="spec4">
+                    ---
+                </strong>
+
+            </div>
+
+        </div>
+
+        <br>
+
+        <button class="btn btn-red"
+                onclick="closeBikeModal()">
+            CLOSE
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   PAGE NAVIGATION
+========================================================= */
+
+function openPage(pageId, button){
+
+    const pages =
+    document.querySelectorAll(".page");
+
+    pages.forEach(function(page){
+
+        page.classList.remove("active");
+
+    });
+
+
+    const selected =
+    document.getElementById(pageId);
+
+    if(selected){
+
+        selected.classList.add("active");
+
+    }
+
+
+    const navButtons =
+    document.querySelectorAll(
+        ".nav-links button"
+    );
+
+    navButtons.forEach(function(btn){
+
+        btn.classList.remove("active");
+
+    });
+
+
+    if(button){
+
+        button.classList.add("active");
+
+    }
+
+
+    document
+    .getElementById("navLinks")
+    .classList.remove("show");
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =========================================================
+   OPEN PAGE BY ID
+========================================================= */
+
+function openPageById(pageId){
+
+    const pages =
+    document.querySelectorAll(".page");
+
+    pages.forEach(function(page){
+
+        page.classList.remove("active");
+
+    });
+
+
+    const selected =
+    document.getElementById(pageId);
+
+    if(selected){
+
+        selected.classList.add("active");
+
+    }
+
+
+    const navButtons =
+    document.querySelectorAll(
+        ".nav-links button"
+    );
+
+    navButtons.forEach(function(btn){
+
+        btn.classList.remove("active");
+
+    });
+
+
+    navButtons.forEach(function(btn){
+
+        const code =
+        btn.getAttribute("onclick");
+
+        if(
+            code &&
+            code.includes(pageId)
+        ){
+
+            btn.classList.add("active");
+
+        }
+
+    });
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+function toggleMenu(){
+
+    document
+    .getElementById("navLinks")
+    .classList.toggle("show");
+
+}
+
+
+/* =========================================================
+   BIKE SEARCH
+========================================================= */
+
+function searchBikes(){
+
+    const value =
+    document
+    .getElementById("bikeSearch")
+    .value
+    .toLowerCase();
+
+
+    const cards =
+    document.querySelectorAll(
+        ".bike-card"
+    );
+
+
+    cards.forEach(function(card){
+
+        const name =
+        card
+        .getAttribute("data-name")
+        .toLowerCase();
+
+
+        if(name.includes(value)){
+
+            card.style.display =
+            "block";
+
+        }
+        else{
+
+            card.style.display =
+            "none";
+
+        }
+
+    });
+
+}
+
+
+/* =========================================================
+   BIKE FILTER
+========================================================= */
+
+function filterBikes(type, button){
+
+    const cards =
+    document.querySelectorAll(
+        ".bike-card"
+    );
+
+
+    const buttons =
+    document.querySelectorAll(
+        ".filters button"
+    );
+
+
+    buttons.forEach(function(btn){
+
+        btn.classList.remove("active");
+
+    });
+
+
+    button.classList.add("active");
+
+
+    cards.forEach(function(card){
+
+        const cardType =
+        card.getAttribute(
+            "data-type"
+        );
+
+
+        if(
+            type === "all" ||
+            cardType === type
+        ){
+
+            card.style.display =
+            "block";
+
+        }
+        else{
+
+            card.style.display =
+            "none";
+
+        }
+
+    });
+
+}
+
+
+/* =========================================================
+   FAVORITE
+========================================================= */
+
+function favoriteBike(button){
+
+    button.classList.toggle(
+        "liked"
+    );
+
+
+    if(
+        button.classList.contains(
+            "liked"
+        )
+    ){
+
+        button.innerHTML =
+        "♥";
+
+    }
+    else{
+
+        button.innerHTML =
+        "♡";
+
+    }
+
+}
+
+
+/* =========================================================
+   BIKE MODAL
+========================================================= */
+
+function showBike(
+    name,
+    description,
+    engine,
+    power,
+    feature,
+    transmission
+){
+
+    document
+    .getElementById("modalName")
+    .innerText =
+    name;
+
+
+    document
+    .getElementById("modalDescription")
+    .innerText =
+    description;
+
+
+    document
+    .getElementById("spec1")
+    .innerText =
+    engine;
+
+
+    document
+    .getElementById("spec2")
+    .innerText =
+    power;
+
+
+    document
+    .getElementById("spec3")
+    .innerText =
+    feature;
+
+
+    document
+    .getElementById("spec4")
+    .innerText =
+    transmission;
+
+
+    document
+    .getElementById("bikeModal")
+    .classList.add("show");
+
+}
+
+
+/* =========================================================
+   CLOSE MODAL
+========================================================= */
+
+function closeBikeModal(){
+
+    document
+    .getElementById("bikeModal")
+    .classList.remove("show");
+
+}
+
+
+/* =========================================================
+   MODAL OUTSIDE CLICK
+========================================================= */
+
+document
+.getElementById("bikeModal")
+.addEventListener(
+    "click",
+    function(event){
+
+        if(
+            event.target === this
+        ){
+
+            closeBikeModal();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   ESC KEY
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(
+            event.key === "Escape"
+        ){
+
+            closeBikeModal();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   IMAGE FALLBACK
+========================================================= */
+
+function imageFallback(img){
+
+    img.onerror = null;
+
+    img.src =
+    "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1400&q=85";
+
+}
+async function loadBikes() {
+    const url =
+        "https://vpic.nhtsa.dot.gov/api/vehicles/GetAllMakes?format=json";
+
+    const response = await fetch(url);
+    const data = await response.json();
+
+    console.log(data.Results);
+}
+
+</script>
+
+</body>
+</html>
